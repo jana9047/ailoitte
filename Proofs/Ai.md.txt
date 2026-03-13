@@ -1,0 +1,143 @@
+Prompt 1
+Prompt
+How can I implement an offline-first notes app in Flutter using local storage and Firebase?
+AI Suggestion
+
+AI recommended an offline-first architecture consisting of:
+
+Local database storage
+
+Action queue for offline writes
+
+Background synchronization service
+
+Decision
+
+Accepted.
+
+This architecture was implemented using:
+
+Hive for local storage
+
+Firebase Firestore for backend
+
+A queue system for syncing actions.
+
+Prompt 2
+Prompt
+How to detect internet connectivity in Flutter?
+AI Suggestion
+
+Use the connectivity_plus plugin to monitor network status.
+
+Decision
+
+Accepted.
+
+Connectivity listener implemented:
+
+Connectivity().onConnectivityChanged.listen(...)
+
+This triggers the sync service when internet connectivity returns.
+
+Prompt 3
+Prompt
+How to implement retry logic for failed Firebase sync operations?
+AI Suggestion
+
+Maintain a retry counter and retry failed operations a limited number of times.
+
+Decision
+
+Accepted with modification.
+
+Final implementation:
+
+retryCount incremented
+max retries = 3
+failed actions removed after max retries
+
+This prevents infinite retry loops.
+
+Prompt 4
+Prompt
+How to design a queue system for offline writes in Flutter?
+AI Suggestion
+
+Store actions such as:
+
+add_note
+update_note
+delete_note
+
+in a local queue and process them sequentially.
+
+Decision
+
+Accepted.
+
+Queue implemented using Hive:
+
+queue_box
+
+Each action contains:
+
+id
+type
+data
+retryCount
+
+Prompt 5
+Prompt
+How can I improve the UI of a Flutter notes list?
+AI Suggestion
+
+Use card-based layouts with icons and improved spacing.
+
+Decision
+
+Accepted.
+
+UI updated with:
+
+Card-based notes
+
+Floating action button
+
+Online/offline indicator
+
+Prompt 6
+Prompt
+How to add an online/offline indicator in Flutter?
+AI Suggestion
+
+Use connectivity status to show a cloud icon in the AppBar.
+
+Decision
+
+Accepted.
+
+Final implementation:
+
+Icons.cloud_done (online)
+Icons.cloud_off (offline)
+Rejected Suggestions
+
+The following suggestions were considered but not implemented:
+
+Suggestion 1
+
+Directly writing notes to Firebase without a local queue.
+
+Reason for rejection:
+
+This would break offline functionality.
+
+Suggestion 2
+
+Using SQLite instead of Hive.
+
+Reason for rejection:
+
+Hive was preferred due to simpler integration with Flutter and better performance for key-value storage.
+
